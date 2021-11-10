@@ -49,6 +49,7 @@
 
 #include <impl/Kokkos_Profiling.hpp>
 #include <impl/Kokkos_Profiling_Interface.hpp>
+#include <impl/Kokkos_Command_Line_Parsing.hpp>
 
 #if defined(KOKKOS_ENABLE_LIBDL) || defined(KOKKOS_TOOLS_INDEPENDENT_BUILD)
 #include <dlfcn.h>
@@ -601,7 +602,8 @@ void initialize(const std::string& profileLibrary) {
 #ifdef KOKKOS_TOOLS_ENABLE_LIBDL
   void* firstProfileLibrary = nullptr;
 
-  if ((profileLibrary.empty()) || (profileLibrary == InitArguments::unset_string_option)) {
+  if ((profileLibrary.empty()) ||
+      (profileLibrary == InitArguments::unset_string_option)) {
     invoke_init_callbacks();
     return;
   }
